@@ -106,6 +106,23 @@ LANGUAGE_CODE = 'en-us'
 
 TIME_ZONE = 'UTC'
 
+# config/settings.py
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    # ... (outras apps padrão)
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+   
+    'biblioteca',
+    
+    # Se você usou uma classe de config (BibliotecaConfig), use:
+    # 'biblioteca.apps.BibliotecaConfig', 
+    # Mas 'biblioteca' é mais simples e geralmente funciona.
+]
+
+
 USE_I18N = True
 
 USE_TZ = True
