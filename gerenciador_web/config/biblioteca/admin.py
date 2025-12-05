@@ -1,16 +1,9 @@
 from django.contrib import admin
 from .models import Autor, Livro, Membro, Emprestimo
 
-admin.site.register(Autor)
-admin.site.register(Livro)
-admin.site.register(Membro)
-admin.site.register(Emprestimo)
+# ATENÇÃO: As linhas 'admin.site.register(...)' DUPLICADAS foram REMOVIDAS daqui.
 
 # biblioteca/admin.py
-
-from django.contrib import admin
-from .models import Autor, Livro, Membro, Emprestimo
-
 
 # 1. Personalização do Autor
 @admin.register(Autor)
@@ -43,6 +36,7 @@ class EmprestimoAdmin(admin.ModelAdmin):
     list_filter = ('status', 'data_saida', 'data_prevista')
     search_fields = ('livro__titulo', 'membro__nome')
     ordering = ('-data_saida',)
+    
     # Ações disponíveis para vários itens selecionados
     actions = ['marcar_como_devolvido']
 
@@ -52,10 +46,16 @@ class EmprestimoAdmin(admin.ModelAdmin):
         livros_devolvidos = 0
         for emprestimo in queryset:
             if emprestimo.status != "Devolvido":
-                emprestimo.salvar_devolucao()
-                livros_devolvidos += 1
+                # Esta linha assume que existe um método salvar_devolucao() no seu modelo Emprestimo
+                # Se não existir, o código falhará em tempo de execução
+                try:
+                    emprestimo.salvar_devolucao()
+                    livros_devolvidos += 1
+                except AttributeError:
+                    self.message_user(request, "Erro: O método salvar_devolucao() não existe no modelo Emprestimo.", level='error')
+                    return
 
         if livros_devolvidos > 0:
-            self.message_user(request, f'{livros_devolvidos} empréstimo(s) foram marcados como Devolvidos e o estoque atualizado.')
+            self.message_user(request, f'{livros_devolvidos} empréstimo(s) foram marcados como Devolvidos e o estoque atualizado.', level='success')
         else:
-            self.message_user(request, 'Nenhum empréstimo ativo foi selecionado.', level='warning')
+            self.message_user(request, 'Nenhum empréstimo ativo foi selecionado ou os itens já estavam devolvidos.', level='warning')

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block titulo_pagina %}{{ titulo_pagina }}{% endblock %}
+{% block titulo_header %}{{ titulo_pagina }}{% endblock %}
+
+{% block content %}
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Editora</th>
+            <th>Ano</th>
+            <th>Total</th>
+            <th>Disponível</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for livro in livros %}
+        <tr>
+            <td>{{ livro.titulo }}</td>
+            <td>{{ livro.autor.nome }}</td>
+            <td>{{ livro.editora }}</td>
+            <td>{{ livro.ano }}</td>
+            <td>{{ livro.quantidade_total }}</td>
+            <td>
+                {{ livro.quantidade_disponivel }}
+            </td>
+            <td>
+                {% if livro.quantidade_disponivel > 0 %}
+                    <span class="badge bg-success">Disponível</span>
+                {% else %}
+                    <span class="badge bg-danger">Esgotado</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="7">Nenhum livro encontrado no acervo. <a href="{% url 'biblioteca:adicionar_livro' %}">Adicionar um novo?</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

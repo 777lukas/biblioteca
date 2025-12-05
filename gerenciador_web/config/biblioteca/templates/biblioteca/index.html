@@ -1,0 +1,32 @@
+<p class="lead">Utilize a barra de navegação acima para gerenciar o acervo, cadastrar novos itens, membros e registrar empréstimos.</p>
+
+<div class="row text-center my-5">
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Acervo</h5>
+                <p class="card-text">Veja a lista completa de livros disponíveis.</p>
+                <a href="{% url 'biblioteca:listar_livros' %}" class="btn btn-primary">Ver Livros</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Cadastrar</h5>
+                <p class="card-text">Adicione novos autores, livros ou membros.</p>
+                <a href="{% url 'biblioteca:adicionar_livro' %}" class="btn btn-success">Cadastrar Item</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h5 class="card-title">Empréstimo</h5>
+                <p class="card-text">Registre um novo empréstimo de livro.</p>
+                <a href="{% url 'biblioteca:registrar_emprestimo' %}" class="btn btn-warning">Novo Empréstimo</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

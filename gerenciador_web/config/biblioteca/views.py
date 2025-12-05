@@ -3,10 +3,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.db.models import F # Para operações de banco de dados mais avançadas (como listagem)
+from django.http import HttpResponse
 
 from .forms import LivroForm, AutorForm, MembroForm, EmprestimoForm
 from .models import Livro, Autor, Membro, Emprestimo
 
+
+def index(request):
+    # Agora o Django sabe o que é HttpResponse
+    return HttpResponse("<h1>Bem-vindo à Biblioteca!</h1><p>Esta é a página inicial da sua aplicação.</p>")
 
 # --- Views de Cadastro (C) ---
 
@@ -80,3 +85,10 @@ def listar_livros(request):
         'titulo_pagina': 'Acervo de Livros',
     }
     return render(request, 'biblioteca/listar_livros.html', contexto)
+    # biblioteca/views.py (Exemplo)
+
+def index(request):
+    """
+    Função de view básica para a página inicial da biblioteca.
+    """
+    return HttpResponse("<h1>Bem-vindo à Biblioteca!</h1><p>Esta é a página inicial da sua aplicação.</p>")

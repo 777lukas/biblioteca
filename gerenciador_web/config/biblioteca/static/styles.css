@@ -1,0 +1,57 @@
+/*
+ * Arquivo: styles.css
+ * Certifique-se de que este arquivo está no mesmo local que o index.html
+ */
+
+/* Estilos globais */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Estilizando o cabeçalho */
+header {
+    background-color: #0056b3;
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.titulo-principal {
+    margin: 0;
+    font-size: 2.5em;
+}
+
+/* Estilizando o conteúdo principal */
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para verificar se o link funciona */
+#caixa-teste {
+    background-color: #4CAF50; /* Verde */
+    color: white;
+    padding: 10px;
+    text-align: center;
+    margin-top: 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* Estilizando o rodapé */
+footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #ccc;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
